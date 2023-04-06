@@ -234,9 +234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac7024894265428ab4c17d401877a29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  jumpForce: 5
-  gravity: 6
 --- !u!1001 &1893927623
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -301,21 +298,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1057276749209077345, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057276749961690989, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1057276750389953290, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1057276750389953290, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 45
+      value: 34.269
       objectReference: {fileID: 0}
     - target: {fileID: 1057276750389953290, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 22
+      value: 21.4
       objectReference: {fileID: 0}
     - target: {fileID: 1057276750389953290, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 109
+      value: 108.5
       objectReference: {fileID: 0}
     - target: {fileID: 1057276750389953290, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
       propertyPath: m_LocalRotation.w
@@ -348,6 +353,14 @@ PrefabInstance:
     - target: {fileID: 1057276750389953291, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
       propertyPath: m_Name
       value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057276750622567635, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.062
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057276751071993842, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
