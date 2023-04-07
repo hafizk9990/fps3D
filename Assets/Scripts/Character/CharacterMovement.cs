@@ -32,13 +32,9 @@ public class CharacterMovement : MonoBehaviour
   void applyGravity()
   {
     if (myCharacter.isGrounded && Input.GetKeyDown(KeyCode.Space))
-    {
       verticalVelocity = jumpForce;
-    }
     else
-    {
       verticalVelocity -= gravity * Time.deltaTime;
-    }
 
     moveDirection.y = verticalVelocity * Time.deltaTime;
   }
