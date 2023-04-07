@@ -1,14 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-  public float speed = 5f;
-  public float jumpForce = 10f;
-  public float gravity = 20f;
-  private Vector3 moveDirection = Vector3.zero;
-  private CharacterController myCharacter;
+  float speed = 15f;
+  float jumpForce = 10f;
+  float gravity = 20f;
+  CharacterController myCharacter;
+  float verticalVelocity = 4f;
+  Vector3 moveDirection = Vector3.zero;
 
   void Awake()
   {
@@ -17,7 +16,26 @@ public class CharacterMovement : MonoBehaviour
 
   void Update()
   {
-    // transform = new Vector3(transform.x, transform.y, transform.z); // Why not this?
-    moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+    moveCharacter();
+  }
+
+  void moveCharacter()
+  {
+    moveDirection = new Vector3(Input.GetAxis(Axis.HORIZONTAL_AXIS), 0f, Input.GetAxis(Axis.VERTICAL_AXIS));
+    moveDirection = transform.TransformDirection(moveDirection);
+    moveDirection = moveDirection * speed;
+    moveDirection *= Time.deltaTime;
+    applyGravity();
+    myCharacter.Move(moveDirection);
+  }
+
+  void applyGravity()
+  {
+    if (myCharacter.isGrounded && Input.GetKeyDown(KeyCode.Space))
+      verticalVelocity = jumpForce;
+    else
+      verticalVelocity -= gravity * Time.deltaTime;
+
+    moveDirection.y = verticalVelocity * Time.deltaTime;
   }
 }
