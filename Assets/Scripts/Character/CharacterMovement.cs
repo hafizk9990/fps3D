@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-  float speed = 15f;
+  public float speed = 15f;
   float jumpForce = 10f;
   float gravity = 20f;
   CharacterController myCharacter;

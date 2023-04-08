@@ -54,4 +54,26 @@ void applyGravity()
 
 -**Inversion of X and Y in Mouse Axis System:** By convention, the Unity engine inverts values for mouse axis. Using the y-axis, we look sideways. Using x-axis, we look up and down.
 
--**Looking Around via Mouse:** Hello!
+-**Looking Around via Mouse:** We get input from the mouse for where the cursor is. This is done with inversion of axis (X for vertical, Y for horizontal). Then, we go ahead and transform X and Y of current looking angles to future looking angles (wher the mouse cursor is). We also clamp the up and down value to stop it from looking beyond that. The whole process looks like this:
+
+```
+  void lookAround()
+  {
+    // STEP-01: Checking where the mouse cursor is in the game every frame
+    Vector2 inputMouseCoordinates = new Vector2(Input.GetAxis(MouseAxis.MOUSE_Y), Input.GetAxis(MouseAxis.MOUSE_X));
+
+    // STEP-02: Up and down looking (x) and left and right looking (y)
+    float sensitivity = 7f;
+    Vector2 defaultLookLimits = new Vector2(-70f, 80f);
+    Vector2 lookAngles = Vector2.zero;
+    lookAngles.x += inputMouseCoordinates.x * sensitivity * -1; // Vertical
+    lookAngles.y += inputMouseCoordinates.y * sensitivity; // Horizontal
+    Mathf.Clamp(lookAngles.x, defaultLookLimits.x, defaultLookLimits.y);
+
+    // STEP-03: Actually make the player look around
+    character.localRotation = Quaternion.Euler(0f, lookAngles.y, 0f);
+    // Move your entire body to look horizontally, so that you run in the direction of looking. So, we set character's own rotation.
+    characterVision.localRotation = Quaternion.Euler(lookAngles.x, 0f, 0f);
+    // Move only your neck to move up and down. That's why characterVision's rotation is being set.
+  }
+```
