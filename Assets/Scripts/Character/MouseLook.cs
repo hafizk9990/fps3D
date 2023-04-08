@@ -8,6 +8,7 @@ public class MouseLook : MonoBehaviour
   [SerializeField] private Transform characterVision;
   private CursorLockMode cursorIsLocked = CursorLockMode.Locked;
   private CursorLockMode cursorIsUnlocked = CursorLockMode.None;
+  Vector2 lookAngles = Vector2.zero;
 
   void Start()
   {
@@ -48,10 +49,9 @@ public class MouseLook : MonoBehaviour
     // STEP-02: Up and down looking (x) and left and right looking (y)
     float sensitivity = 7f;
     Vector2 defaultLookLimits = new Vector2(-70f, 80f);
-    Vector2 lookAngles = Vector2.zero;
     lookAngles.x += inputMouseCoordinates.x * sensitivity * -1; // Vertical
     lookAngles.y += inputMouseCoordinates.y * sensitivity; // Horizontal
-    Mathf.Clamp(lookAngles.x, defaultLookLimits.x, defaultLookLimits.y);
+    lookAngles.x = Mathf.Clamp(lookAngles.x, defaultLookLimits.x, defaultLookLimits.y);
 
     // STEP-03: Actually make the player look around
     character.localRotation = Quaternion.Euler(0f, lookAngles.y, 0f); // Move your entire body to look left and right, so that you run in that direction too
