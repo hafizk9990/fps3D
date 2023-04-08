@@ -21,8 +21,10 @@
 -**Character Movement:** We obtained X and Y axis input from the keyboard. Then, we applied it to transform direction of our character's transform component. We also sped this process up and smoothed it out by making it frame-rate independent. Finally, we assigned the values to the `Move` method of our `Character Controller`. The whole process looks like this:
 
 ```
+// C#
+
 void moveCharacter()
-{
+  {
     moveDirection = new Vector3(Input.GetAxis(Axis.HORIZONTAL_AXIS), 0f, Input.GetAxis(Axis.VERTICAL_AXIS));
     moveDirection = transform.TransformDirection(moveDirection);
     moveDirection = moveDirection * speed;
@@ -35,15 +37,16 @@ void moveCharacter()
 -**Applying Gravity:** For this, we saw if our character was on the ground or not. If no, we applied gravity to pull it down. Else, we checked for space bar input. If given, we changed the Y parameter of our character's transforom component's direction. The whole process looks like this.
 
 ```
+// C#
+
 void applyGravity()
-{
-if (myCharacter.isGrounded && Input.GetKeyDown(KeyCode.Space))
-verticalVelocity = jumpForce;
-else
-verticalVelocity -= gravity \* Time.deltaTime;
+  {
+    if (myCharacter.isGrounded && Input.GetKeyDown(KeyCode.Space))
+      verticalVelocity = jumpForce;
+    else
+      verticalVelocity -= gravity \* Time.deltaTime;
 
-      moveDirection.y = verticalVelocity * Time.deltaTime;
-
+    moveDirection.y = verticalVelocity * Time.deltaTime;
 }
 ```
 

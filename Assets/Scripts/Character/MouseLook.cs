@@ -4,17 +4,8 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-  [SerializeField]
-  private Transform character, characterVision;
-  private bool canUnlock = true;
-  private float sensitivity = 5f;
-  private int smoothSteps = 10;
-  private float smoothWeight = 0.4f;
-  private Vector2 lookAngles = Vector2.zero;
-  private Vector2 inputMouseCoordinates = Vector2.zero;
-  private Vector2 smoothMove = Vector2.zero;
-  private Vector2 defaultLookLimits = new Vector2(-70f, 80f);
-  private int lastLookFrame;
+  [SerializeField] private Transform character;
+  [SerializeField] private Transform characterVision;
   private CursorLockMode cursorIsLocked = CursorLockMode.Locked;
   private CursorLockMode cursorIsUnlocked = CursorLockMode.None;
 
@@ -52,9 +43,12 @@ public class MouseLook : MonoBehaviour
   void lookAround()
   {
     // STEP-01: Checking where the mouse cursor is in the game every frame
-    inputMouseCoordinates = new Vector2(Input.GetAxis(MouseAxis.MOUSE_Y), Input.GetAxis(MouseAxis.MOUSE_X));
+    Vector2 inputMouseCoordinates = new Vector2(Input.GetAxis(MouseAxis.MOUSE_Y), Input.GetAxis(MouseAxis.MOUSE_X));
 
     // STEP-02: Up and down looking (x) and left and right looking (y)
+    float sensitivity = 7f;
+    Vector2 defaultLookLimits = new Vector2(-70f, 80f);
+    Vector2 lookAngles = Vector2.zero;
     lookAngles.x += inputMouseCoordinates.x * sensitivity * -1; // Vertical
     lookAngles.y += inputMouseCoordinates.y * sensitivity; // Horizontal
     Mathf.Clamp(lookAngles.x, defaultLookLimits.x, defaultLookLimits.y);
