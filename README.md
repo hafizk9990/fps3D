@@ -18,6 +18,62 @@
 
 -**Time.deltaTime:** This is the time between two frames. On a computer with more frames, this value is small and vice versa. If we don't multiply our position transformations with this value, the game will not become frame-rate independent. So, to make our chracter move at a constant speed across all devices, we use this variable.
 
+-**Character Movement:** We obtained X and Y axis input from the keyboard. Then, we applied it to transform direction of our character's transform component. We also sped this process up and smoothed it out by making it frame-rate independent. Finally, we assigned the values to the `Move` method of our `Character Controller`. The whole process looks like this:
+
+```
+// C#
+
+void moveCharacter()
+  {
+    moveDirection = new Vector3(Input.GetAxis(Axis.HORIZONTAL_AXIS), 0f, Input.GetAxis(Axis.VERTICAL_AXIS));
+    moveDirection = transform.TransformDirection(moveDirection);
+    moveDirection = moveDirection * speed;
+    moveDirection *= Time.deltaTime;
+    applyGravity();
+    myCharacter.Move(moveDirection);
+  }
+```
+
+-**Applying Gravity:** For this, we saw if our character was on the ground or not. If no, we applied gravity to pull it down. Else, we checked for space bar input. If given, we changed the Y parameter of our character's transforom component's direction. The whole process looks like this.
+
+```
+// C#
+
+void applyGravity()
+  {
+    if (myCharacter.isGrounded && Input.GetKeyDown(KeyCode.Space))
+      verticalVelocity = jumpForce;
+    else
+      verticalVelocity -= gravity \* Time.deltaTime;
+
+    moveDirection.y = verticalVelocity * Time.deltaTime;
+}
+```
+
 -**Hiding Mouse Cursor:** We used the following sytax to lock or unlock the cursor when the escape key was pressed by the user: `Cursor.lockState = CursorLockMode.Locked` to lock `Cursor.lockState = CursorLockMode.None` to unlock.
 
 -**Inversion of X and Y in Mouse Axis System:** By convention, the Unity engine inverts values for mouse axis. Using the y-axis, we look sideways. Using x-axis, we look up and down.
+
+-**Looking Around via Mouse:** We get input from the mouse for where the cursor is. This is done with inversion of axis (X for vertical, Y for horizontal). Then, we go ahead and transform X and Y of current looking angles to future looking angles (wher the mouse cursor is). We also clamp the up and down value to stop it from looking beyond that. The whole process looks like this:
+
+```
+  void lookAround()
+  {
+    // STEP-01: Checking where the mouse cursor is in the game every frame
+    Vector2 inputMouseCoordinates = new Vector2(Input.GetAxis(MouseAxis.MOUSE_Y), Input.GetAxis(MouseAxis.MOUSE_X));
+
+    // STEP-02: Up and down looking (x) and left and right looking (y)
+    float sensitivity = 7f;
+    Vector2 defaultLookLimits = new Vector2(-70f, 80f);
+    Vector2 lookAngles = Vector2.zero;
+    lookAngles.x += inputMouseCoordinates.x * sensitivity * -1; // Vertical
+    lookAngles.y += inputMouseCoordinates.y * sensitivity; // Horizontal
+    Mathf.Clamp(lookAngles.x, defaultLookLimits.x, defaultLookLimits.y);
+
+    // STEP-03: Actually make the player look around
+    character.localRotation = Quaternion.Euler(0f, lookAngles.y, 0f);
+    // Move your entire body to look horizontally, so that you run in the direction of looking. So, we set character's own rotation.
+    characterVision.localRotation = Quaternion.Euler(lookAngles.x, 0f, 0f);
+    // Move only your neck to move up and down. That's why characterVision's rotation is being set.
+  }
+```
