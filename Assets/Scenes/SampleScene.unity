@@ -340,6 +340,10 @@ PrefabInstance:
       value: Character
       objectReference: {fileID: 0}
     - target: {fileID: 8832084284634793140, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
+      propertyPath: lookRoot
+      value: 
+      objectReference: {fileID: 1765158403}
+    - target: {fileID: 8832084284634793140, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1045819986}
@@ -347,6 +351,10 @@ PrefabInstance:
       propertyPath: rollAngle
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8832084284634793140, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
+      propertyPath: playerRoot
+      value: 
+      objectReference: {fileID: 1045819986}
     - target: {fileID: 8832084284634793140, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
       propertyPath: characterVision
       value: 

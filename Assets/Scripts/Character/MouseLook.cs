@@ -55,12 +55,12 @@ public class MouseLook : MonoBehaviour
     inputMouseCoordinates = new Vector2(Input.GetAxis(MouseAxis.MOUSE_Y), Input.GetAxis(MouseAxis.MOUSE_X));
 
     // STEP-02: Up and down looking (x) and left and right looking (y)
-    lookAngles.x = inputMouseCoordinates.x * sensitivity; // Vertical
-    lookAngles.y = inputMouseCoordinates.y * sensitivity; // Horizontal
+    lookAngles.x += inputMouseCoordinates.x * sensitivity * -1; // Vertical
+    lookAngles.y += inputMouseCoordinates.y * sensitivity; // Horizontal
     Mathf.Clamp(lookAngles.x, defaultLookLimits.x, defaultLookLimits.y);
 
-    // STEP-03: 
-    character.localRotation = Quaternion.Euler(0f, lookAngles.y, 0f);
-    characterVision.localRotation = Quaternion.Euler(lookAngles.x, 0f, 0f);
+    // STEP-03: Actually make the player look around
+    character.localRotation = Quaternion.Euler(0f, lookAngles.y, 0f); // Move your entire body to look left and right, so that you run in that direction too
+    characterVision.localRotation = Quaternion.Euler(lookAngles.x, 0f, 0f); // Move only your neck to move up and down
   }
 }

@@ -51,6 +51,4 @@ verticalVelocity -= gravity \* Time.deltaTime;
 
 -**Inversion of X and Y in Mouse Axis System:** By convention, the Unity engine inverts values for mouse axis. Using the y-axis, we look sideways. Using x-axis, we look up and down.
 
--**Mathf Library:** Hello!
-
 -**Looking Around via Mouse:** Hello!
