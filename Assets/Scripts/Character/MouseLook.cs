@@ -53,7 +53,7 @@ public class MouseLook : MonoBehaviour
     lookAngles.y += inputMouseCoordinates.y * sensitivity; // Horizontal
     lookAngles.x = Mathf.Clamp(lookAngles.x, defaultLookLimits.x, defaultLookLimits.y);
 
-    // STEP-03: Actually make the player look around
+    // STEP-03: Actually make the player look around by setting his value for rotation
     character.localRotation = Quaternion.Euler(0f, lookAngles.y, 0f); // Move your entire body to look left and right, so that you run in that direction too
     characterVision.localRotation = Quaternion.Euler(lookAngles.x, 0f, 0f); // Move only your neck to move up and down
   }
