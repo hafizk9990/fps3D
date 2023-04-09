@@ -16,18 +16,20 @@
   <br> <br>
 
 - **3D Axis System:** Pressing `A` key or `D` key moves our character along the x-axis (horizontal axis). Pressing the space bar to jump moves it along the y-axis. To move the character along z-axis (vertical axis), you need to press `W` or `S` keys. Overall, this is how we track the movement of our character: `Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); // x, y and z axis`
+
   <br> <br>
 
--**Static Variable Access:** In C#, the const keyword is used to declare a constant value. When a variable is declared as const, it is implicitly static. This means that it belongs to the class rather than an instance of the class, and its value is fixed at compile-time and cannot be changed during runtime. That's why the compiler throws an error if you don't initialize the const members at compile time.
+- **Static Variable Access:** In C#, the const keyword is used to declare a constant value. When a variable is declared as const, it is implicitly static. This means that it belongs to the class rather than an instance of the class, and its value is fixed at compile-time and cannot be changed during runtime. That's why the compiler throws an error if you don't initialize the const members at compile time.
+
 <br> <br>
 
 - **Local Space Vs. World Space:** Local coordinates are defined with respect to the object, whereas the global ones are with respect to the world our character is in.
   <br> <br>
 
--**Time.deltaTime:** This is the time between two frames. On a computer with more frames, this value is small and vice versa. If we don't multiply our position transformations with this value, the game will not become frame-rate independent. So, to make our chracter move at a constant speed across all devices, we use this variable.
-<br> <br>
+- **Time.deltaTime:** This is the time between two frames. On a computer with more frames, this value is small and vice versa. If we don't multiply our position transformations with this value, the game will not become frame-rate independent. So, to make our chracter move at a constant speed across all devices, we use this variable.
+  <br> <br>
 
--**Character Movement:** We obtained X and Y axis input from the keyboard. Then, we applied it to transform direction of our character's transform component. We also sped this process up and smoothed it out by making it frame-rate independent. Finally, we assigned the values to the `Move` method of our `Character Controller`. The whole process looks like this:
+- **Character Movement:** We obtained X and Y axis input from the keyboard. Then, we applied it to transform direction of our character's transform component. We also sped this process up and smoothed it out by making it frame-rate independent. Finally, we assigned the values to the `Move` method of our `Character Controller`. The whole process looks like this:
 
 ```
 // C#
@@ -43,9 +45,9 @@ void moveCharacter()
   }
 ```
 
-<br> <br>
+<br>
 
--**Applying Gravity:** For this, we saw if our character was on the ground or not. If no, we applied gravity to pull it down. Else, we checked for space bar input. If given, we changed the Y parameter of our character's transforom component's direction. The whole process looks like this.
+- **Applying Gravity:** For this, we saw if our character was on the ground or not. If no, we applied gravity to pull it down. Else, we checked for space bar input. If given, we changed the Y parameter of our character's transforom component's direction. The whole process looks like this.
 
 ```
 // C#
@@ -61,15 +63,15 @@ void applyGravity()
 }
 ```
 
-<br> <br>
+<br>
 
--**Hiding Mouse Cursor:** We used the following sytax to lock or unlock the cursor when the escape key was pressed by the user: `Cursor.lockState = CursorLockMode.Locked` to lock `Cursor.lockState = CursorLockMode.None` to unlock.
-<br> <br>
+- **Hiding Mouse Cursor:** We used the following sytax to lock or unlock the cursor when the escape key was pressed by the user: `Cursor.lockState = CursorLockMode.Locked` to lock `Cursor.lockState = CursorLockMode.None` to unlock.
+  <br> <br>
 
--**Inversion of X and Y in Mouse Axis System:** By convention, the Unity engine inverts values for mouse axis. Using the y-axis, we look sideways. Using x-axis, we look up and down.
-<br> <br>
+- **Inversion of X and Y in Mouse Axis System:** By convention, the Unity engine inverts values for mouse axis. Using the y-axis, we look sideways. Using x-axis, we look up and down.
+  <br> <br>
 
--**Looking Around via Mouse:** We get input from the mouse for where the cursor is. This is done with inversion of axis (X for vertical, Y for horizontal). Then, we go ahead and transform X and Y of current looking angles to future looking angles (wher the mouse cursor is). We also clamp the up and down value to stop it from looking beyond that. The whole process looks like this:
+- **Looking Around via Mouse:** We get input from the mouse for where the cursor is. This is done with inversion of axis (X for vertical, Y for horizontal). Then, we go ahead and transform X and Y of current looking angles to future looking angles (wher the mouse cursor is). We also clamp the up and down value to stop it from looking beyond that. The whole process looks like this:
 
 ```
 // C#
@@ -96,22 +98,18 @@ void applyGravity()
   }
 ```
 
-<br> <br>
+<br>
 
--**Movement Vs. Rotation:** Movement refers to changing the position / placement of an object in 3D space, whereas rotation is completely different, as the object stays exactly in the same place but moves / rotates around its axis. In terms of the X axis, for example, the movement would be horizontal, but rotating around the X axis would result in a change in the object's vertical orientation.
-<br> <br>
+- **Movement Vs. Rotation:** Movement refers to changing the position / placement of an object in 3D space, whereas rotation is completely different, as the object stays exactly in the same place but moves / rotates around its axis. In terms of the X axis, for example, the movement would be horizontal, but rotating around the X axis would result in a change in the object's vertical orientation.
+  <br> <br>
 
--**Running Vs. Looking Around:** We use movement for running, but we use rotation for looking around. Movement happens by transforming the direction of our character along x, y and z axis. Whereas to look, we have to change the rotation of our character along x, y and z axis.
-<br><br>
+- **Running Vs. Looking Around:** We use movement for running, but we use rotation for looking around. Movement happens by transforming the direction of our character along x, y and z axis. Whereas to look, we have to change the rotation of our character along x, y and z axis.
+  <br><br>
 
 To move our object, we have to change its placement along some axis, using `transform.TransformDierection( ... )` 3D vector in C#. Whereas to rotate something along some axis, we have to set its `Quaternion.Euler( ... )` 3D vector in C#.
 <br><br>
 
--**Quaternion & Euler:** In computer graphics and 3D game development, a quaternion is a mathematical representation of a 3D rotation.
-<br> <br>
+- **Quaternion & Euler:** In computer graphics and 3D game development, a quaternion is a mathematical representation of a 3D rotation.
+  <br> <br>
 
-Euler angles are a way to represent a rotation in three-dimensional space using three angles: pitch, yaw, and roll. Pitch is the rotation around the x-axis, which tilts the object up and down. Yaw is the rotation around the y-axis, which rotates the object left and right. Roll is the rotation around the z-axis, which twists the object. Together, these three angles define the orientation of an object in three-dimensional space. Euler angles can be used to represent rotations in many different contexts, including 3D graphics, robotics, and aerospace engineering.
-
-<br> <br>
-
-Notice that the focus here is on the "rotation", not the "movement" of the object in 3D.
+Euler angles are a way to represent a rotation in three-dimensional space using three angles: pitch, yaw, and roll. Pitch is the rotation around the x-axis, which tilts the object up and down. Yaw is the rotation around the y-axis, which rotates the object left and right. Roll is the rotation around the z-axis, which twists the object. Together, these three angles define the orientation of an object in three-dimensional space. Euler angles can be used to represent rotations in many different contexts, including 3D graphics, robotics, and aerospace engineering. Notice that the focus here is on the "rotation", not the "movement" of the object in 3D.
