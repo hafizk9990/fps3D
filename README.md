@@ -16,12 +16,10 @@
   <br> <br>
 
 - **3D Axis System:** Pressing `A` key or `D` key moves our character along the x-axis (horizontal axis). Pressing the space bar to jump moves it along the y-axis. To move the character along z-axis (vertical axis), you need to press `W` or `S` keys. Overall, this is how we track the movement of our character: `Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); // x, y and z axis`
-
   <br> <br>
 
 - **Static Variable Access:** In C#, the const keyword is used to declare a constant value. When a variable is declared as const, it is implicitly static. This means that it belongs to the class rather than an instance of the class, and its value is fixed at compile-time and cannot be changed during runtime. That's why the compiler throws an error if you don't initialize the const members at compile time.
-
-<br> <br>
+  <br> <br>
 
 - **Local Space Vs. World Space:** Local coordinates are defined with respect to the object, whereas the global ones are with respect to the world our character is in.
   <br> <br>
@@ -103,13 +101,10 @@ void applyGravity()
 - **Movement Vs. Rotation:** Movement refers to changing the position / placement of an object in 3D space, whereas rotation is completely different, as the object stays exactly in the same place but moves / rotates around its axis. In terms of the X axis, for example, the movement would be horizontal, but rotating around the X axis would result in a change in the object's vertical orientation.
   <br> <br>
 
-- **Running Vs. Looking Around:** We use movement for running, but we use rotation for looking around. Movement happens by transforming the direction of our character along x, y and z axis. Whereas to look, we have to change the rotation of our character along x, y and z axis.
+- **Running Vs. Looking Around:** We use movement for running, but we use rotation for looking around. Movement happens by transforming the direction of our character along x, y and z axis. Whereas to look, we have to change the rotation of our character along x, y and z axis. To move our object, we have to change its placement along some axis, using `transform.TransformDierection( ... )` 3D vector in C#. Whereas to rotate something along some axis, we have to set its `Quaternion.Euler( ... )` 3D vector in C#.
   <br><br>
 
-To move our object, we have to change its placement along some axis, using `transform.TransformDierection( ... )` 3D vector in C#. Whereas to rotate something along some axis, we have to set its `Quaternion.Euler( ... )` 3D vector in C#.
-<br><br>
+- **Quaternion.Euler( .... ):** In computer graphics and 3D game development, a quaternion is a mathematical representation of a 3D rotation. Euler angles are a way to represent a rotation in three-dimensional space using three angles: pitch, yaw, and roll. Pitch is the rotation around the x-axis, which tilts the object up and down. Yaw is the rotation around the y-axis, which rotates the object left and right. Roll is the rotation around the z-axis, which twists the object. Together, these three angles define the orientation of an object in three-dimensional space. Euler angles can be used to represent rotations in many different contexts, including 3D graphics, robotics, and aerospace engineering. Notice that the focus here is on the "rotation", not the "movement" of the object in 3D. The Quaternion.Euler() method in Unity is used to create a quaternion from euler angles. It takes three float values representing the rotations around the x, y, and z axes respectively, and returns a Quaternion object. So, technically speaking, the input to Quaternion.Euler() is 3D (representing the three angles of rotation around three perpendicular axes), and the output is a 4D quaternion (representing the orientation of an object in 3D space, along with an additional scalar component).
+  <br><br>
 
-- **Quaternion & Euler:** In computer graphics and 3D game development, a quaternion is a mathematical representation of a 3D rotation.
-  <br> <br>
-
-Euler angles are a way to represent a rotation in three-dimensional space using three angles: pitch, yaw, and roll. Pitch is the rotation around the x-axis, which tilts the object up and down. Yaw is the rotation around the y-axis, which rotates the object left and right. Roll is the rotation around the z-axis, which twists the object. Together, these three angles define the orientation of an object in three-dimensional space. Euler angles can be used to represent rotations in many different contexts, including 3D graphics, robotics, and aerospace engineering. Notice that the focus here is on the "rotation", not the "movement" of the object in 3D.
+- **Bullet:** Text!
