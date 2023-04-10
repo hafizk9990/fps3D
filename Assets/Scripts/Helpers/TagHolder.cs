@@ -4,7 +4,6 @@ public class Axis
   public const string VERTICAL_AXIS = "Vertical";
 }
 
-
 public class MouseAxis
 {
   public const string MOUSE_X = "Mouse X";

@@ -15,8 +15,14 @@
 - **Pre-Fabricated Objects ("Prefabs") & Object Reusability:** One of the main reaaons for creating prefabs is that we can reuse them without having to create the entire game object with all its components all over again. To make a prefab, we drag the game object into the `assets` section of the engine. The prefab in the `assets` is now the main source of truth, whereas the prefabs made via dragging and dropping this one in the `hierarcy` are merely the copies of the main prefab. If you make changes to the main, it will reflect in all copies. If you make changes to the copy, it will not reflect in the main by default, but you can make that happen by cliking on `overrides` in the copy prefab's inspector tab and selecting `Apply All`.
   <br> <br>
 
-- **3D Axis System:** Pressing `A` key or `D` key moves our character along the x-axis (horizontal axis). Pressing the space bar to jump moves it along the y-axis. To move the character along z-axis (vertical axis), you need to press `W` or `S` keys. Overall, this is how we track the movement of our character: `Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); // x, y and z axis`
+- **Keyboard Input:** We can use the following syntex to take keycoard input. `new Vector3(Input.GetAxis("HORIZONTAL"), 0f, input.GetAxis()"VERTICAL"));` This helps us get input from A, S, D and W keys as well as the arrow keys (alternatively).
   <br> <br>
+
+- **3D Axis System (On Keyboard):** Pressing `A` key or `D` key moves our character along the x-axis (horizontal axis). Pressing the space bar to jump moves it along the y-axis. To move the character along z-axis (vertical axis), you need to press `W` or `S` keys. Overall, this is how we track the movement of our character: `Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal", 0, Input.GetAxis("Vertical")); // x, y and z axis`
+  <br> <br>
+
+- **Mouse Input:** We can get the mouse input like this: `new Vector2(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));`
+  <br><br>
 
 - **Static Variable Access:** In C#, the const keyword is used to declare a constant value. When a variable is declared as const, it is implicitly static. This means that it belongs to the class rather than an instance of the class, and its value is fixed at compile-time and cannot be changed during runtime. That's why the compiler throws an error if you don't initialize the const members at compile time.
   <br> <br>
@@ -107,4 +113,4 @@ void applyGravity()
 - **Quaternion.Euler( .... ):** In computer graphics and 3D game development, a quaternion is a mathematical representation of a 3D rotation. Euler angles are a way to represent a rotation in three-dimensional space using three angles: pitch, yaw, and roll. Pitch is the rotation around the x-axis, which tilts the object up and down. Yaw is the rotation around the y-axis, which rotates the object left and right. Roll is the rotation around the z-axis, which twists the object. Together, these three angles define the orientation of an object in three-dimensional space. Euler angles can be used to represent rotations in many different contexts, including 3D graphics, robotics, and aerospace engineering. Notice that the focus here is on the "rotation", not the "movement" of the object in 3D. The Quaternion.Euler() method in Unity is used to create a quaternion from euler angles. It takes three float values representing the rotations around the x, y, and z axes respectively, and returns a Quaternion object. So, technically speaking, the input to Quaternion.Euler() is 3D (representing the three angles of rotation around three perpendicular axes), and the output is a 4D quaternion (representing the orientation of an object in 3D space, along with an additional scalar component).
   <br><br>
 
-- **AudioSource Vs. AudioClip[]:** Text!
+- **AudioSource Component:** Text!
