@@ -7,16 +7,16 @@ public class CharacterFootsteps : MonoBehaviour
   AudioSource footstepSound;
   [SerializeField]
   AudioClip[] footstepClips;
-  float minVolume;
-  float maxVolume;
+  public float volume;
   CharacterController myCharacter;
-  float stepDistance;
+  public float stepDistance;
+
   float accumulatedDistance;
 
   void Awake()
   {
     footstepSound = GetComponent<AudioSource>();
-    myCharacter = GetComponent<CharacterController>();
+    myCharacter = GetComponentInParent<CharacterController>();
   }
 
   void Update()
@@ -31,8 +31,18 @@ public class CharacterFootsteps : MonoBehaviour
 
     if (isCharacterMoving())
     {
-      // Now, apply sound effects ... 
+      accumulatedDistance += Time.deltaTime;
+
+      if (accumulatedDistance >= stepDistance)
+      {
+        footstepSound.volume = volume;
+        footstepSound.clip = footstepClips[Random.Range(0, footstepClips.Length)];
+        footstepSound.Play();
+        accumulatedDistance = 0f;
+      }
     }
+    else
+      accumulatedDistance = 0f;
   }
 
   bool isCharacterMoving()
