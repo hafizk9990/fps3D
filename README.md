@@ -113,7 +113,7 @@ void applyGravity()
 - **Quaternion.Euler( .... ):** In computer graphics and 3D game development, a quaternion is a mathematical representation of a 3D rotation. Euler angles are a way to represent a rotation in three-dimensional space using three angles: pitch, yaw, and roll. Pitch is the rotation around the x-axis, which tilts the object up and down. Yaw is the rotation around the y-axis, which rotates the object left and right. Roll is the rotation around the z-axis, which twists the object. Together, these three angles define the orientation of an object in three-dimensional space. Euler angles can be used to represent rotations in many different contexts, including 3D graphics, robotics, and aerospace engineering. Notice that the focus here is on the "rotation", not the "movement" of the object in 3D. The Quaternion.Euler() method in Unity is used to create a quaternion from euler angles. It takes three float values representing the rotations around the x, y, and z axes respectively, and returns a Quaternion object. So, technically speaking, the input to Quaternion.Euler() is 3D (representing the three angles of rotation around three perpendicular axes), and the output is a 4D quaternion (representing the orientation of an object in 3D space, along with an additional scalar component).
   <br><br>
 
-- **AudioSource Component:** We dynamically set the `AudioClip` and `volume` values from our C# script to play the sound when our character runs. We set. This is the complete code for it:
+- **AudioSource Component:** We dynamically set the `AudioClip` and `volume` values of the AudioSource component attached to our object from our C# script to play the sound when our character runs. We set. This is the complete code for it:
 
 ```
 if (isCharacterMoving())
@@ -133,3 +133,5 @@ if (isCharacterMoving())
 ```
 
 <br>
+
+- **Animations & Animator Controllers:** Animations work only with the animator controllers. So, at first, we have to have an animation in our project. Then, we can create an animator controller in our project assets. In that controller, we need to add a new "state" and attach with it our animation in the inspector. We set the "entry point" in our animator controller to be the weapon drawing animation. Afterwards, we add a transition to it and attach a new animation state, "idle", with it. We also created some triggers in the `Parameters` sub-window. Afterwards, we attached this trigger as a conditional statement with our animation's "arrow" in the animator window.
