@@ -1,4 +1,8 @@
-# FPS 3D Survival Game &mdash; Unity & C#
+# First-Person Shooter Survival Game &mdash; 3D Unity & C#
+
+Down below, we discuss the game mechanics in Unity engine as well as the programming concepts in C# language that went into the development of this game.
+
+## Part-01: Game Mechanics (Unity Engine)
 
 - **Directional Light:** We have used directional light to create the shadows in the game. Direction light covers the whole scene, unlike spot and other types of lights. Its rotation along the x-axis changes the light's angle is very significant in determining the direction of the shadows. The sun rises at 0 degrees along x axis and sets at 180 degrees. At 90 degrees y-axis value, it is at the top.
   <br> <br>
@@ -14,6 +18,11 @@
 
 - **Pre-Fabricated Objects ("Prefabs") & Object Reusability:** One of the main reaaons for creating prefabs is that we can reuse them without having to create the entire game object with all its components all over again. To make a prefab, we drag the game object into the `assets` section of the engine. The prefab in the `assets` is now the main source of truth, whereas the prefabs made via dragging and dropping this one in the `hierarcy` are merely the copies of the main prefab. If you make changes to the main, it will reflect in all copies. If you make changes to the copy, it will not reflect in the main by default, but you can make that happen by cliking on `overrides` in the copy prefab's inspector tab and selecting `Apply All`.
   <br> <br>
+
+  - **Animations & Animator Controllers:** Animations work only with the animator controllers. So, at first, we have to have an animation in our project. Then, we can create an animator controller in our project assets. In that controller, we need to add a new "state" and attach with it our animation in the inspector. We set the "entry point" in our animator controller to be the weapon drawing animation. Afterwards, we add a transition to it and attach a new animation state, "idle", with it. We also created some triggers in the `Parameters` sub-window. Afterwards, we attached this trigger as a conditional statement with our animation's "arrow" in the animator window.
+    <br><br>
+
+  ## Part-02: Game Programming (C# Language)
 
 - **Keyboard Input:** We can use the following syntex to take keycoard input. `new Vector3(Input.GetAxis("HORIZONTAL"), 0f, input.GetAxis()"VERTICAL"));` This helps us get input from A, S, D and W keys as well as the arrow keys (alternatively).
   <br> <br>
@@ -61,7 +70,7 @@ void applyGravity()
     if (myCharacter.isGrounded && Input.GetKeyDown(KeyCode.Space))
       verticalVelocity = jumpForce;
     else
-      verticalVelocity -= gravity \* Time.deltaTime;
+      verticalVelocity -= gravity * Time.deltaTime;
 
     moveDirection.y = verticalVelocity * Time.deltaTime;
 }
@@ -133,5 +142,3 @@ if (isCharacterMoving())
 ```
 
 <br>
-
-- **Animations & Animator Controllers:** Animations work only with the animator controllers. So, at first, we have to have an animation in our project. Then, we can create an animator controller in our project assets. In that controller, we need to add a new "state" and attach with it our animation in the inspector. We set the "entry point" in our animator controller to be the weapon drawing animation. Afterwards, we add a transition to it and attach a new animation state, "idle", with it. We also created some triggers in the `Parameters` sub-window. Afterwards, we attached this trigger as a conditional statement with our animation's "arrow" in the animator window.
