@@ -182,6 +182,7 @@ GameObject:
   - component: {fileID: 8832084284634793140}
   - component: {fileID: 1045819987}
   - component: {fileID: 2016474902}
+  - component: {fileID: 1617090130}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -282,6 +283,19 @@ MonoBehaviour:
   - {fileID: 1480835721114289799}
   - {fileID: 601138057313131091}
   - {fileID: 7384685253912755714}
+  currentWeaponIndex: 0
+--- !u!114 &1617090130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057276750389953291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36159a74aac2c4ec5a4b7947fbc68698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1057276750622567644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,7 +1913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100028, guid: 2bd6bf150a6e08645964bd2baf2a789b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100030, guid: 2bd6bf150a6e08645964bd2baf2a789b, type: 3}
       propertyPath: m_Layer
@@ -3075,6 +3089,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 48d42201fa1ddd74b8df820204882ede, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ac251688704484000844249d08d27cd4, type: 2}
     - target: {fileID: 13700000, guid: 48d42201fa1ddd74b8df820204882ede, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
