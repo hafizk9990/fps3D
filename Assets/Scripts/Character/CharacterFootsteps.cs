@@ -10,7 +10,6 @@ public class CharacterFootsteps : MonoBehaviour
   public float volume;
   CharacterController myCharacter;
   public float stepDistance;
-
   float accumulatedDistance;
 
   void Awake()
