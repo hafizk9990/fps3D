@@ -14,7 +14,6 @@ public class CharacterAttack : MonoBehaviour
     weaponManager = GetComponent<WeaponManager>();
   }
 
-  // Update is called once per frame
   void Update()
   {
     shoot();
@@ -22,17 +21,23 @@ public class CharacterAttack : MonoBehaviour
 
   void shoot()
   {
-    if (weaponManager.getCurrentWeapon().fireType == WeaponFireType.MULTIPLE_FIRE)
+    if (
+      Input.GetMouseButton(0) && // Not GetMouseButtonDown( ... )
+      weaponManager.getCurrentWeapon().tag == "Rifle" &&
+      Time.time >= nextTimeToFire
+    )
     {
-      if (Input.GetMouseButtonDown(0) && Time.time >= nextTimeToFire)
-      {
-        nextTimeToFire = Time.time + (1f / fireRate);
-        weaponManager.getCurrentWeapon().shootAnimation();
-      }
-      else
-      {
+      nextTimeToFire = Time.time + (1f / fireRate);
+      weaponManager.getCurrentWeapon().shootAnimation();
+    }
 
-      }
+    else if (Input.GetMouseButtonDown(0))
+    {
+      if (weaponManager.getCurrentWeapon().tag == "Axe")
+        weaponManager.getCurrentWeapon().shootAnimation();
+
+      else if (weaponManager.getCurrentWeapon().tag == "Revolver" || weaponManager.getCurrentWeapon().tag == "Shotgun")
+        weaponManager.getCurrentWeapon().shootAnimation();
     }
   }
 }
