@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 345080340}
   m_Layer: 5
   m_Name: Crosshair
-  m_TagString: Untagged
+  m_TagString: Crosshair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -526,6 +526,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1057276749208277201, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
+      propertyPath: m_TagString
+      value: Spear
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057276749523886456, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057276749523886456, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057276749523886456, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057276749523886457, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
+      propertyPath: m_TagString
+      value: FP Cam
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057276749523886462, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
+      propertyPath: field of view
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057276749961690989, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057276750116208495, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
+      propertyPath: m_TagString
+      value: Bow
+      objectReference: {fileID: 0}
     - target: {fileID: 1057276750389953290, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -573,6 +605,14 @@ PrefabInstance:
     - target: {fileID: 1057276750389953291, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
       propertyPath: m_Name
       value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057276750622567644, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
+      propertyPath: m_TagString
+      value: Character Vision
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057276751071993842, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}

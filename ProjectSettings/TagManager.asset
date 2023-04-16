@@ -8,6 +8,11 @@ TagManager:
   - Rifle
   - Revolver
   - Shotgun
+  - Crosshair
+  - Character Vision
+  - FP Cam
+  - Spear
+  - Bow
   layers:
   - Default
   - TransparentFX
