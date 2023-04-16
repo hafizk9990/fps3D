@@ -1,6 +1,7 @@
 # First-Person Shooter Survival Game &mdash; 3D Unity & C#
 
 Down below, we discuss the game mechanics in Unity engine as well as the programming concepts in C# language that went into the development of this game.
+<br><br><br>
 
 ## Part-01: Game Mechanics (Unity Engine)
 
@@ -19,8 +20,17 @@ Down below, we discuss the game mechanics in Unity engine as well as the program
 - **Pre-Fabricated Objects ("Prefabs") & Object Reusability:** One of the main reaaons for creating prefabs is that we can reuse them without having to create the entire game object with all its components all over again. To make a prefab, we drag the game object into the `assets` section of the engine. The prefab in the `assets` is now the main source of truth, whereas the prefabs made via dragging and dropping this one in the `hierarcy` are merely the copies of the main prefab. If you make changes to the main, it will reflect in all copies. If you make changes to the copy, it will not reflect in the main by default, but you can make that happen by cliking on `overrides` in the copy prefab's inspector tab and selecting `Apply All`.
   <br> <br>
 
-- **Animations & Animator Controllers:** Animations work only with the animator controllers. So, at first, we have to have an animation in our project. Then, we can create an animator controller in our project assets. In that controller, we need to add a new "state" and attach with it our animation in the inspector. We set the "entry point" in our animator controller to be the weapon drawing animation. Afterwards, we add a transition to it and attach a new animation state, "idle", with it. We also created some triggers in the `Parameters` sub-window. Afterwards, we attached this trigger as a conditional statement with our animation's "arrow" in the animator window.
+- **Animations:** You can go to the `Window => Animation` tab of Unity to create a new `Animation`. This animation will be stored in the assets of our project. To create the animation now, we can set the frame value to indicate at what frame a specific animation will be completed, starting from the 0th frame. This determines in how much time, basically, the animation (the act of drawing axe or zooming in with the weapon etc.) will run completely.
+  <br> <br>
+
+- **Animator Controller:** Animations can be added to Animator Controller component. Animator Controllers are basically componens which are added to our objects. In this controller, we need to add a new "state" and attach with it our animation. We set the "entry point" in our animator controller to be the weapon drawing animation. Afterwards, we add a transition to it and add a new state, "idle". In this new state, some new animation has to be attached. Hence, inside a controller, we can create an entire "flow chart" that represents transition from one state to another, thereby actually transitioning from one animation to the other.
+  <br> <br>
+
+- **Animation Parameters (Triggers & Bools):** We also created some triggers in the `Parameters` sub-window. Afterwards, we attached this trigger as a conditional statement with our animation's "arrow" in the animator window. We can also set bool values, which when made true or false (via C# script) will execute the animation.
   <br><br>
+
+- **Animation Exit Time & Transition Durations:** We also switched off the animation exit time (if we wanted to, for example, abrupt idle animation and aim starightaway). Finally, the animation transition times were set for around 0.1 seconds (100 ms) or 0.3 seconds (300 ms), depending upon how quickly we wanted to play those animations. For example, if you have an idle state and a run state, the transition duration would determine how long it takes for the character to move from the idle to the run animation.
+  <br><br><br>
 
   ## Part-02: Game Programming (C# Language)
 
