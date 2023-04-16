@@ -1,6 +1,7 @@
 # First-Person Shooter Survival Game &mdash; 3D Unity & C#
 
 Down below, we discuss the game mechanics in Unity engine as well as the programming concepts in C# language that went into the development of this game.
+<br><br>
 
 ## Part-01: Game Mechanics (Unity Engine)
 
@@ -21,6 +22,9 @@ Down below, we discuss the game mechanics in Unity engine as well as the program
 
 - **Animations & Animator Controllers:** Animations work only with the animator controllers. So, at first, we have to have an animation in our project. Then, we can create an animator controller in our project assets. In that controller, we need to add a new "state" and attach with it our animation in the inspector. We set the "entry point" in our animator controller to be the weapon drawing animation. Afterwards, we add a transition to it and attach a new animation state, "idle", with it. We also created some triggers in the `Parameters` sub-window. Afterwards, we attached this trigger as a conditional statement with our animation's "arrow" in the animator window.
   <br><br>
+
+- **Animation Exit Time & Transition Durations:** We also switched off the animation exit time (if we wanted to, for example, abrupt idle animation and aim starightaway). Finally, the animation transition times were set for around 0.1 seconds (100 ms) or 0.3 seconds (300 ms), depending upon how quickly we wanted to play those animations. For example, if you have an idle state and a run state, the transition duration would determine how long it takes for the character to move from the idle to the run animation.
+  <br><br><br><br>
 
   ## Part-02: Game Programming (C# Language)
 
