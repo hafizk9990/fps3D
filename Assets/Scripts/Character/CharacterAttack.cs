@@ -10,17 +10,18 @@ public class CharacterAttack : MonoBehaviour
   float daamge = 20f;
   bool isZoomed;
   Camera mainCam;
-  Animator zoomCamAnim;
-  GameObject crossHair;
+  Animator fpCameraAnimator;
   bool isAiming;
+  [SerializeField]
+  GameObject arrowPrefab, bowPrefab;
+  [SerializeField]
+  Transform arrowAndBowStartPosition;
 
   void Awake()
   {
     weaponManager = GetComponent<WeaponManager>();
     mainCam = Camera.main;
-    // zoomCamAnim = transform.Find("Character Vision").transform.Find("FP Cam").GetComponent<Animator>();
-    zoomCamAnim = GameObject.FindGameObjectWithTag("FP Cam").GetComponent<Animator>();
-    crossHair = GameObject.FindWithTag("Crosshair");
+    fpCameraAnimator = GameObject.FindGameObjectWithTag("FP Cam").GetComponent<Animator>();
   }
 
   void Update()
@@ -39,6 +40,7 @@ public class CharacterAttack : MonoBehaviour
     {
       nextTimeToFire = Time.time + (1f / fireRate);
       weaponManager.getCurrentWeapon().shootAnimation();
+      BulletFired();
     }
 
     else if (Input.GetMouseButtonDown(0))
@@ -47,15 +49,21 @@ public class CharacterAttack : MonoBehaviour
         weaponManager.getCurrentWeapon().shootAnimation();
 
       else if (weaponManager.getCurrentWeapon().tag == "Revolver" || weaponManager.getCurrentWeapon().tag == "Shotgun")
+      {
         weaponManager.getCurrentWeapon().shootAnimation();
+        BulletFired();
+      }
 
-      else if (weaponManager.getCurrentWeapon().tag == "Spear" || weaponManager.getCurrentWeapon().tag == "Bow")
+      else if (weaponManager.getCurrentWeapon().tag == "Bow" || weaponManager.getCurrentWeapon().tag == "Spear")
       {
         if (isAiming)
         {
           weaponManager.getCurrentWeapon().shootAnimation();
-          if (weaponManager.getCurrentWeapon().projectileType == WeaponProjectileType.ARROW) { }
-          else if (weaponManager.getCurrentWeapon().projectileType == WeaponProjectileType.SPEAR) { }
+
+          if (weaponManager.getCurrentWeapon().tag == "Bow")
+            throwArrowOrSpear(arrowPrefab);
+          else if (weaponManager.getCurrentWeapon().tag == "Spear")
+            throwArrowOrSpear(bowPrefab);
         }
       }
     }
@@ -67,16 +75,15 @@ public class CharacterAttack : MonoBehaviour
     {
       if (Input.GetMouseButtonDown(1))
       {
-        zoomCamAnim.Play("ZoomIn");
-        crossHair.SetActive(false);
+        fpCameraAnimator.Play("ZoomIn");
       }
       if (Input.GetMouseButtonUp(1))
       {
-        zoomCamAnim.Play("ZoomOut");
-        crossHair.SetActive(true);
+        fpCameraAnimator.Play("ZoomOut");
       }
     }
 
+    // For bow and spear
     if (weaponManager.getCurrentWeapon().weaponAim == WeaponAim.SELF_AIM)
     {
       if (Input.GetMouseButtonDown(1))
@@ -89,6 +96,23 @@ public class CharacterAttack : MonoBehaviour
         isAiming = false;
         weaponManager.getCurrentWeapon().Aim(isAiming);
       }
+    }
+  }
+
+  void throwArrowOrSpear(GameObject preFab)
+  {
+    GameObject projectile = Instantiate(preFab);
+    projectile.transform.position = arrowAndBowStartPosition.position;
+    projectile.GetComponent<ArrowAndBow>().Launch(mainCam);
+  }
+
+  void BulletFired()
+  {
+    RaycastHit hit;
+
+    if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit))
+    {
+      // do stuff
     }
   }
 }

@@ -13,6 +13,7 @@ TagManager:
   - FP Cam
   - Spear
   - Bow
+  - Arrow
   layers:
   - Default
   - TransparentFX
