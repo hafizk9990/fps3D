@@ -32,7 +32,7 @@ public class ArrowAndBow : MonoBehaviour
 
   public void Launch(Camera mainCam)
   {
-    myRigidBody.velocity = mainCam.transform.forward * speed;
+    myRigidBody.velocity = mainCam.transform.forward * speed; // z axis
     transform.LookAt(transform.position + myRigidBody.velocity);
   }
 

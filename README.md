@@ -152,3 +152,18 @@ if (isCharacterMoving())
 ```
 
 <br>
+
+- **Raycast & RaycastHit:** A `Raycast` is an invisible line or a "ray" extended in space from the point of departure towards any arbitrary object with a collider on attached it. `RaycastHit`, on the other hand, contains the information about Raycast's collision. The RaycastHit object contains information such as the point of impact, the distance between the ray's origin and the point of impact, the normal vector of the surface that was hit, and the GameObject that was hit.
+
+  ```
+  if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit))
+  {
+    // Executes when the inifite raycast hits an object with a collider on it
+  }
+  ```
+
+  In the code above, we are making a raycast extend forward from our currrent position.
+
+  <br><br>
+
+- **Nav Mesh Agent:** Hello ... !!
