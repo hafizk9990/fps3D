@@ -166,4 +166,8 @@ if (isCharacterMoving())
 
   <br><br>
 
-- **Nav Mesh Agent:** Hello ... !!
+- **Nav Mesh Agent & Walkable Objects:** We went to the navigation panel (Window => AI) and clicked on "bake" to generate the `NavMesh`. Before doing this, we went to the "Terrain" object in the mesh and marked it as "walkable." Others (trees, stones, rocks, etc.) were not marked as "Walkable" in the Engine. Now, Unity generates a `NavMesh` for us. Any object having NavMesh attached to it as a component (our enemy has it) will be able to walk on the walkable area on our navigation mesh.
+
+<br><br>
+
+- **Game AI:** We include it via `UnityEngine.AI` namespace.
