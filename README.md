@@ -57,7 +57,7 @@ Down below, we discuss the game mechanics in Unity engine as well as the program
 ```
 // C#
 
-void moveCharacter()
+  void moveCharacter()
   {
     moveDirection = new Vector3(Input.GetAxis(Axis.HORIZONTAL_AXIS), 0f, Input.GetAxis(Axis.VERTICAL_AXIS));
     moveDirection = transform.TransformDirection(moveDirection);
@@ -75,7 +75,7 @@ void moveCharacter()
 ```
 // C#
 
-void applyGravity()
+  void applyGravity()
   {
     if (myCharacter.isGrounded && Input.GetKeyDown(KeyCode.Space))
       verticalVelocity = jumpForce;
@@ -135,20 +135,20 @@ void applyGravity()
 - **AudioSource Component:** We dynamically set the `AudioClip` and `volume` values of the AudioSource component attached to our object from our C# script to play the sound when our character runs. We set. This is the complete code for it:
 
 ```
-if (isCharacterMoving())
-    {
-      accumulatedDistance += Time.deltaTime;
+  if (isCharacterMoving())
+  {
+    accumulatedDistance += Time.deltaTime;
 
-      if (accumulatedDistance >= stepDistance)
-      {
-        footstepSound.volume = volume;
-        footstepSound.clip = footstepClips[Random.Range(0, footstepClips.Length)];
-        footstepSound.Play();
-        accumulatedDistance = 0f;
-      }
-    }
-    else
+    if (accumulatedDistance >= stepDistance)
+    {
+      footstepSound.volume = volume;
+      footstepSound.clip = footstepClips[Random.Range(0, footstepClips.Length)];
+      footstepSound.Play();
       accumulatedDistance = 0f;
+    }
+  }
+  else
+    accumulatedDistance = 0f;
 ```
 
 <br>
