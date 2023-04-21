@@ -54,7 +54,7 @@ Down below, we discuss the game mechanics in Unity engine as well as the program
 
 - **Character Movement:** We obtained X and Y axis input from the keyboard. Then, we applied it to transform direction of our character's transform component. We also sped this process up and smoothed it out by making it frame-rate independent. Finally, we assigned the values to the `Move` method of our `Character Controller`. The whole process looks like this:
 
-```
+```csharp
 // C#
 
   void moveCharacter()
@@ -72,7 +72,7 @@ Down below, we discuss the game mechanics in Unity engine as well as the program
 
 - **Applying Gravity:** For this, we saw if our character was on the ground or not. If no, we applied gravity to pull it down. Else, we checked for space bar input. If given, we changed the Y parameter of our character's transforom component's direction. The whole process looks like this.
 
-```
+```csharp
 // C#
 
   void applyGravity()
@@ -96,7 +96,7 @@ Down below, we discuss the game mechanics in Unity engine as well as the program
 
 - **Looking Around via Mouse:** We get input from the mouse for where the cursor is. This is done with inversion of axis (X for vertical, Y for horizontal). Then, we go ahead and transform X and Y of current looking angles to future looking angles (wher the mouse cursor is). We also clamp the up and down value to stop it from looking beyond that. The whole process looks like this:
 
-```
+```csharp
 // C#
 
   void lookAround()
@@ -134,7 +134,7 @@ Down below, we discuss the game mechanics in Unity engine as well as the program
 
 - **AudioSource Component:** We dynamically set the `AudioClip` and `volume` values of the AudioSource component attached to our object from our C# script to play the sound when our character runs. We set. This is the complete code for it:
 
-```
+```csharp
   if (isCharacterMoving())
   {
     accumulatedDistance += Time.deltaTime;
@@ -155,7 +155,7 @@ Down below, we discuss the game mechanics in Unity engine as well as the program
 
 - **Raycast & RaycastHit:** A `Raycast` is an invisible line or a "ray" extended in space from the point of departure towards any arbitrary object with a collider on attached it. `RaycastHit`, on the other hand, contains the information about Raycast's collision. The RaycastHit object contains information such as the point of impact, the distance between the ray's origin and the point of impact, the normal vector of the surface that was hit, and the GameObject that was hit.
 
-  ```
+  ```csharp
   if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit))
   {
     // Executes when the inifite raycast hits an object with a collider on it
@@ -175,7 +175,7 @@ Down below, we discuss the game mechanics in Unity engine as well as the program
 
 - **Moving Nav Mesh Agent (Enemy) on NavMesh (Terrain):** We set a random destination for our enemy (agent) using the folloing code
 
-  ```
+  ```csharp
   void setNewRandomDestination()
   {
     float randomPatrolRadius = Random.Range(patrolRadiusMin, patrolRadiusMax);
