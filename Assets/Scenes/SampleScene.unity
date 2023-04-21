@@ -447,6 +447,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a5b83b83e794a1894dd5edf2e2e63f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSpeed: 0.5
+  runSpeed: 4
+  chaseDistance: 7
+  patrolTimer: 0
+  waitBeforeAttack: 2
 --- !u!1 &1579570584
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,6 +675,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1057276750389953291, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
       propertyPath: m_Name
+      value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057276750389953291, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
+      propertyPath: m_TagString
       value: Character
       objectReference: {fileID: 0}
     - target: {fileID: 1057276750622567635, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}

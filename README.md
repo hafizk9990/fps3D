@@ -163,11 +163,29 @@ if (isCharacterMoving())
   ```
 
   In the code above, we are making a raycast extend forward from our currrent position.
-
   <br><br>
 
-- **Nav Mesh Agent & Walkable Objects:** We went to the navigation panel (Window => AI) and clicked on "bake" to generate the `NavMesh`. Before doing this, we went to the "Terrain" object in the mesh and marked it as "walkable." Others (trees, stones, rocks, etc.) were not marked as "Walkable" in the Engine. Now, Unity generates a `NavMesh` for us. Any object having NavMesh attached to it as a component (our enemy has it) will be able to walk on the walkable area on our navigation mesh.
+- **Nav Mesh & Walkable Objects:** We went to the navigation panel (Window => AI) and clicked on "bake" to generate the `NavMesh`. Before doing this, we went to the "Terrain" object in the mesh and marked it as "walkable." Others (trees, stones, rocks, etc.) were not marked as "Walkable" in the Engine. Now, Unity generates a `NavMesh` for us.
+  <br><br>
 
-<br><br>
+- **Nav Mesh Agent:** Any object having Nav Mesh Agent attached to it as a component (our enemy has it) will be able to walk on the walkable area on our Nav Mesh. Nav Mesh agents have a rigid body attached with them. They also have a collider attached with them.
 
-- **Game AI:** We include it via `UnityEngine.AI` namespace.
+- **Game AI:** We include it via `UnityEngine.AI` namespace. It includes the definition of NavMeshAgent in it. We need to get the agent (enemy) and store it in this field.
+  <br><br>
+
+- **Moving Nav Mesh Agent (Enemy) on NavMesh (Terrain):** We set a random destination for our enemy (agent) using the folloing code
+
+  ```
+  void setNewRandomDestination()
+  {
+    float randomPatrolRadius = Random.Range(patrolRadiusMin, patrolRadiusMax);
+    Vector3 randomDirection = Random.insideUnitSphere * randomPatrolRadius;
+    randomDirection += transform.position;
+
+    NavMeshHit myNavMeshHit;
+    NavMesh.SamplePosition(randomDirection, out myNavMeshHit, randomPatrolRadius, -1);
+    myNavMeshAgent.SetDestination(myNavMeshHit.position);
+  }
+  ```
+
+  <br>
