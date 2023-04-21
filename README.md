@@ -83,7 +83,7 @@ Down below, we discuss the game mechanics in Unity engine as well as the program
       verticalVelocity -= gravity * Time.deltaTime;
 
     moveDirection.y = verticalVelocity * Time.deltaTime;
-}
+  }
 ```
 
 <br>
