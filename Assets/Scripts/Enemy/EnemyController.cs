@@ -120,11 +120,8 @@ public class EnemyController : MonoBehaviour
     // test the distance between the player and the enemy
     if (Vector3.Distance(transform.position, target.position) <= chase_Distance)
     {
-
       enemy_Anim.walk(false);
-
       enemy_State = EnemyState.CHASE;
-
     }
 
 
