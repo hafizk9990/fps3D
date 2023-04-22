@@ -16,15 +16,15 @@ public class EnemyAnimator : MonoBehaviour
     // Call them here conditionally .... 
   }
 
-  void walk()
+  public void walk(bool value)
   {
-    enemyAnimatorController.SetBool("Walk", true);
+    enemyAnimatorController.SetBool("Walk", value);
   }
-  void run()
+  public void run(bool value)
   {
-    enemyAnimatorController.SetBool("Run", true);
+    enemyAnimatorController.SetBool("Run", value);
   }
-  void attack()
+  public void attack()
   {
     enemyAnimatorController.SetTrigger("Attack");
   }

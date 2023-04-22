@@ -12,84 +12,231 @@ public enum EnemyState
 
 public class EnemyController : MonoBehaviour
 {
-  EnemyState myEnemyStateEnum;
-  EnemyAnimator myEnemyAnimator;
-  NavMeshAgent myNavMeshAgent;
-  public float walkSpeed = 0.5f;
-  public float runSpeed = 4f;
-  public float chaseDistance = 7f;
-  float currentChaseDistance;
-  float attackDistance = 1.8f;
-  float chaseAfterAttackDistance = 2f;
-  float patrolRadiusMin = 20f;
-  float patrolRadiusMax = 60f;
-  float patrolForThisTime = 15f;
-  public float patrolTimer;
-  public float waitBeforeAttack = 2f;
-  float attackTimer;
-  Transform target;
+
+  private EnemyAnimator enemy_Anim;
+  private NavMeshAgent navAgent;
+
+  private EnemyState enemy_State;
+
+  public float walk_Speed = 0.5f;
+  public float run_Speed = 4f;
+
+  public float chase_Distance = 7f;
+  private float current_Chase_Distance;
+  public float attack_Distance = 1.8f;
+  public float chase_After_Attack_Distance = 2f;
+
+  public float patrol_Radius_Min = 20f, patrol_Radius_Max = 60f;
+  public float patrol_For_This_Time = 15f;
+  private float patrol_Timer;
+
+  public float wait_Before_Attack = 2f;
+  private float attack_Timer;
+
+  private Transform target;
+
+  public GameObject attack_Point;
 
   void Awake()
   {
-    myEnemyAnimator = GetComponent<EnemyAnimator>();
-    myNavMeshAgent = GetComponent<NavMeshAgent>();
+    enemy_Anim = GetComponent<EnemyAnimator>();
+    navAgent = GetComponent<NavMeshAgent>();
+
     target = GameObject.FindWithTag("Character").transform;
+
   }
 
+  // Use this for initialization
   void Start()
   {
-    myEnemyStateEnum = EnemyState.PATROL;
-    patrolTimer = patrolForThisTime;
-    attackTimer = waitBeforeAttack;
-    currentChaseDistance = chaseDistance;
+
+    enemy_State = EnemyState.PATROL;
+
+    patrol_Timer = patrol_For_This_Time;
+
+    // when the enemy first gets to the player
+    // attack right away
+    attack_Timer = wait_Before_Attack;
+
+    // memorize the value of chase distance
+    // so that we can put it back
+    current_Chase_Distance = chase_Distance;
+
   }
 
+  // Update is called once per frame
   void Update()
   {
-    if (myEnemyStateEnum == EnemyState.PATROL)
-      patrol();
-    else if (myEnemyStateEnum == EnemyState.CHASE)
-      chase();
-    else if (myEnemyStateEnum == EnemyState.ATTACK)
-      attack();
-  }
 
-  void patrol()
-  {
-    myNavMeshAgent.isStopped = false;
-    myNavMeshAgent.speed = walkSpeed;
-    patrolTimer += Time.deltaTime;
-
-    if (patrolTimer >= patrolForThisTime)
+    if (enemy_State == EnemyState.PATROL)
     {
-      patrolTimer = 0f;
-      setNewRandomDestination();
+      Patrol();
     }
 
-    if (myNavMeshAgent.velocity.sqrMagnitude > 0)
+    if (enemy_State == EnemyState.CHASE)
     {
-      // Guy moving
+      Chase();
     }
+
+    if (enemy_State == EnemyState.ATTACK)
+    {
+      Attack();
+    }
+
   }
 
-  void setNewRandomDestination()
-  {
-    float randomPatrolRadius = Random.Range(patrolRadiusMin, patrolRadiusMax);
-    Vector3 randomDirection = Random.insideUnitSphere * randomPatrolRadius;
-    randomDirection += transform.position;
-
-    NavMeshHit myNavMeshHit;
-    NavMesh.SamplePosition(randomDirection, out myNavMeshHit, randomPatrolRadius, -1);
-    myNavMeshAgent.SetDestination(myNavMeshHit.position);
-  }
-
-  void chase()
+  void Patrol()
   {
 
-  }
+    // tell nav agent that he can move
+    navAgent.isStopped = false;
+    navAgent.speed = walk_Speed;
 
-  void attack()
+    // add to the patrol timer
+    patrol_Timer += Time.deltaTime;
+
+    if (patrol_Timer > patrol_For_This_Time)
+    {
+
+      SetNewRandomDestination();
+
+      patrol_Timer = 0f;
+
+    }
+
+    if (navAgent.velocity.sqrMagnitude > 0)
+    {
+
+      enemy_Anim.walk(true);
+
+    }
+    else
+    {
+
+      enemy_Anim.walk(false);
+
+    }
+
+    // test the distance between the player and the enemy
+    if (Vector3.Distance(transform.position, target.position) <= chase_Distance)
+    {
+
+      enemy_Anim.walk(false);
+
+      enemy_State = EnemyState.CHASE;
+
+    }
+
+
+  } // patrol
+
+  void Chase()
   {
 
+    // enable the agent to move again
+    navAgent.isStopped = false;
+    navAgent.speed = run_Speed;
+
+    // set the player's position as the destination
+    // because we are chasing(running towards) the player
+    navAgent.SetDestination(target.position);
+
+    if (navAgent.velocity.sqrMagnitude > 0)
+    {
+
+      enemy_Anim.run(true);
+
+    }
+    else
+    {
+
+      enemy_Anim.run(false);
+
+    }
+
+    // if the distance between enemy and player is less than attack distance
+    if (Vector3.Distance(transform.position, target.position) <= attack_Distance)
+    {
+
+      // stop the animations
+      enemy_Anim.run(false);
+      enemy_Anim.walk(false);
+      enemy_State = EnemyState.ATTACK;
+
+      // reset the chase distance to previous
+      if (chase_Distance != current_Chase_Distance)
+      {
+        chase_Distance = current_Chase_Distance;
+      }
+
+    }
+    else if (Vector3.Distance(transform.position, target.position) > chase_Distance)
+    {
+      // player run away from enemy
+
+      // stop running
+      enemy_Anim.run(false);
+
+      enemy_State = EnemyState.PATROL;
+
+      // reset the patrol timer so that the function
+      // can calculate the new patrol destination right away
+      patrol_Timer = patrol_For_This_Time;
+
+      // reset the chase distance to previous
+      if (chase_Distance != current_Chase_Distance)
+      {
+        chase_Distance = current_Chase_Distance;
+      }
+
+
+    } // else
+
+  } // chase
+
+  void Attack()
+  {
+
+    navAgent.velocity = Vector3.zero;
+    navAgent.isStopped = true;
+
+    attack_Timer += Time.deltaTime;
+
+    if (attack_Timer > wait_Before_Attack)
+    {
+
+      enemy_Anim.attack();
+
+      attack_Timer = 0f;
+
+      // play attack sound
+
+    }
+
+    if (Vector3.Distance(transform.position, target.position) >
+       attack_Distance + chase_After_Attack_Distance)
+    {
+
+      enemy_State = EnemyState.CHASE;
+
+    }
+
+
+  } // attack
+
+  void SetNewRandomDestination()
+  {
+
+    float rand_Radius = Random.Range(patrol_Radius_Min, patrol_Radius_Max);
+
+    Vector3 randDir = Random.insideUnitSphere * rand_Radius;
+    randDir += transform.position;
+
+    NavMeshHit navHit;
+
+    NavMesh.SamplePosition(randDir, out navHit, rand_Radius, -1);
+
+    navAgent.SetDestination(navHit.position);
+
   }
-}
+} // class
