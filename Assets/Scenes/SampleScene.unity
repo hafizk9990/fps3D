@@ -368,9 +368,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1452927624, guid: eb1b4d15cbb4346378ac69df9590359b, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+    - target: {fileID: 1350613697, guid: eb1b4d15cbb4346378ac69df9590359b, type: 3}
+      propertyPath: isCannibal
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 555993951602700633, guid: eb1b4d15cbb4346378ac69df9590359b, type: 3}
       propertyPath: m_RootOrder
@@ -382,11 +382,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 555993951602700633, guid: eb1b4d15cbb4346378ac69df9590359b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23
+      value: 23.372
       objectReference: {fileID: 0}
     - target: {fileID: 555993951602700633, guid: eb1b4d15cbb4346378ac69df9590359b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 109
+      value: 108.34
       objectReference: {fileID: 0}
     - target: {fileID: 555993951602700633, guid: eb1b4d15cbb4346378ac69df9590359b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -587,6 +587,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 871180867, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
+      propertyPath: isPlayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1057276750389953290, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -644,6 +648,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 571118417, guid: ac4bf6ce6b61c463cb20fe871e423571, type: 3}
+      propertyPath: isBoar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8705425614890931163, guid: ac4bf6ce6b61c463cb20fe871e423571, type: 3}
       propertyPath: m_Name
       value: Boar

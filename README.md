@@ -204,3 +204,6 @@ Down below, we discuss the game mechanics in Unity engine as well as the program
 ```
 
 We use the above syntax to detect when we are hitting the enemy. `transform.position` captures the position of the attack point itself to which this script is attached containing this piece of code. `radius` is the radius of the sphere in which our colliders are colliding. `myLayerMask` is a filter only for those colliders that are on a specific game layer. When we attack the enemy, then only enemy's layer's objects lying close to us in the specified radius are picked up and added to the collider array.
+<br><br>
+
+- **Dynamically Turning Attack Points On or Off:** Attack points can be turned on or off dynamically by going into the animation and adding `animation events` on a specific frame. In the event, we can choose a function from the attached script that switches the attack point on. Similarly, on the next frames, we can attach another function that switches the attack point off.

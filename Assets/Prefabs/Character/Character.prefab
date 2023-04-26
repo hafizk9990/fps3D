@@ -254,6 +254,7 @@ GameObject:
   - component: {fileID: 1045819987}
   - component: {fileID: 2016474902}
   - component: {fileID: 1617090130}
+  - component: {fileID: 871180867}
   m_Layer: 7
   m_Name: Character
   m_TagString: Character
@@ -371,6 +372,18 @@ MonoBehaviour:
   arrowPrefab: {fileID: 6291901118874481739, guid: 829e3b68fc57f4a39b340744e8dd29d0, type: 3}
   bowPrefab: {fileID: 850129255600870668, guid: 9c4264ffba10042aab912b1888934e77, type: 3}
   arrowAndBowStartPosition: {fileID: 1130754205704775645}
+--- !u!114 &871180867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057276750389953291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f132145eed68e48e69448275d5327850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1057276750622567644
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ public class AttackScript : MonoBehaviour
 
     if (hits.Length > 0 && hits[0].gameObject != null && hits[0].gameObject.activeSelf)
     {
-      Debug.Log("We hit this thing: " + hits[0].gameObject.tag + Time.time);
+      Debug.Log("We hit this thing: " + hits[0].gameObject.tag + " " + Time.time);
       gameObject.SetActive(false);
     }
   }
