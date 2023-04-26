@@ -7,7 +7,7 @@ public class CharacterAttack : MonoBehaviour
   WeaponManager weaponManager;
   float fireRate = 15;
   float nextTimeToFire;
-  float daamge = 20f;
+  float daamge = 50f;
   bool isZoomed;
   Camera mainCam;
   Animator fpCameraAnimator;
@@ -112,7 +112,13 @@ public class CharacterAttack : MonoBehaviour
 
     if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit))
     {
-      // do stuff
+      print("Raycast hit transform tag: " + hit.transform.tag);
+
+      if (hit.transform.tag == "Enemy")
+      {
+        hit.transform.GetComponent<HealthScript>().applyDamage(daamge);
+        // Apply damage to the object we hit (enemy) by decreasing their health
+      }
     }
   }
 }

@@ -12,29 +12,21 @@ public enum EnemyState
 
 public class EnemyController : MonoBehaviour
 {
-
   private EnemyAnimator enemy_Anim;
   private NavMeshAgent navAgent;
-
   private EnemyState enemy_State;
-
   public float walk_Speed = 0.5f;
   public float run_Speed = 4f;
-
-  public float chase_Distance = 7f;
-  private float current_Chase_Distance;
+  public float chaseDistance = 7f;
+  private float current_chaseDistance;
   public float attack_Distance = 1.8f;
   public float chase_After_Attack_Distance = 2f;
-
   public float patrol_Radius_Min = 20f, patrol_Radius_Max = 60f;
   public float patrol_For_This_Time = 15f;
   private float patrol_Timer;
-
   public float wait_Before_Attack = 2f;
   private float attack_Timer;
-
   private Transform target;
-
   public GameObject attack_Point;
 
   void Awake()
@@ -49,27 +41,17 @@ public class EnemyController : MonoBehaviour
     enemy_State = EnemyState.PATROL;
     patrol_Timer = patrol_For_This_Time;
     attack_Timer = wait_Before_Attack;
-    current_Chase_Distance = chase_Distance;
+    current_chaseDistance = chaseDistance;
   }
 
   void Update()
   {
-
     if (enemy_State == EnemyState.PATROL)
-    {
       Patrol();
-    }
-
     if (enemy_State == EnemyState.CHASE)
-    {
       Chase();
-    }
-
     if (enemy_State == EnemyState.ATTACK)
-    {
       Attack();
-    }
-
   }
 
   void Patrol()
@@ -93,7 +75,7 @@ public class EnemyController : MonoBehaviour
       enemy_Anim.walk(false);
     }
 
-    if (Vector3.Distance(transform.position, target.position) <= chase_Distance)
+    if (Vector3.Distance(transform.position, target.position) <= chaseDistance)
     {
       enemy_Anim.walk(false);
       enemy_State = EnemyState.CHASE;
@@ -121,20 +103,20 @@ public class EnemyController : MonoBehaviour
       enemy_Anim.walk(false);
       enemy_State = EnemyState.ATTACK;
 
-      if (chase_Distance != current_Chase_Distance)
+      if (chaseDistance != current_chaseDistance)
       {
-        chase_Distance = current_Chase_Distance;
+        chaseDistance = current_chaseDistance;
       }
     }
-    else if (Vector3.Distance(transform.position, target.position) > chase_Distance)
+    else if (Vector3.Distance(transform.position, target.position) > chaseDistance)
     {
       enemy_Anim.run(false);
       enemy_State = EnemyState.PATROL;
       patrol_Timer = patrol_For_This_Time;
 
-      if (chase_Distance != current_Chase_Distance)
+      if (chaseDistance != current_chaseDistance)
       {
-        chase_Distance = current_Chase_Distance;
+        chaseDistance = current_chaseDistance;
       }
     }
   }
@@ -177,5 +159,10 @@ public class EnemyController : MonoBehaviour
   {
     if (attack_Point.activeInHierarchy)
       attack_Point.SetActive(false);
+  }
+
+  public EnemyState getEnemyState
+  {
+    get; set;
   }
 }

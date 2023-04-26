@@ -420,6 +420,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cannibal
       objectReference: {fileID: 0}
+    - target: {fileID: 555993951602797945, guid: eb1b4d15cbb4346378ac69df9590359b, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb1b4d15cbb4346378ac69df9590359b, type: 3}
 --- !u!1 &1579570584
@@ -639,6 +643,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
+    - target: {fileID: 5700359998396128159, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
+      propertyPath: damage
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6cb159328f7b4fd4b89ece08480ee26, type: 3}
 --- !u!1001 &8705425615688440169
@@ -655,6 +663,10 @@ PrefabInstance:
     - target: {fileID: 8705425614890931163, guid: ac4bf6ce6b61c463cb20fe871e423571, type: 3}
       propertyPath: m_Name
       value: Boar
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705425614890931163, guid: ac4bf6ce6b61c463cb20fe871e423571, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 8705425614891290619, guid: ac4bf6ce6b61c463cb20fe871e423571, type: 3}
       propertyPath: m_RootOrder

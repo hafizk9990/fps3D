@@ -20,15 +20,18 @@ public class EnemyAnimator : MonoBehaviour
   {
     enemyAnimatorController.SetBool("Walk", value);
   }
+
   public void run(bool value)
   {
     enemyAnimatorController.SetBool("Run", value);
   }
+
   public void attack()
   {
     enemyAnimatorController.SetTrigger("Attack");
   }
-  void dead()
+
+  public void dead()
   {
     enemyAnimatorController.SetTrigger("Dead");
   }

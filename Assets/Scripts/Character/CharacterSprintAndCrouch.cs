@@ -16,10 +16,10 @@ public class CharacterSprintAndCrouch : MonoBehaviour
 
   // SPEEDS
 
-  float sprintSpeed = 6f;
-  float walkSpeed = 3f;
-  float crouchSpeed = 2f;
-  float lyingSpeed = 0.5f;
+  float sprintSpeed = 11f;
+  float walkSpeed = 6f;
+  float crouchSpeed = 4f;
+  float lyingSpeed = 2.75f;
 
   // HEIGHTS
 
@@ -36,10 +36,10 @@ public class CharacterSprintAndCrouch : MonoBehaviour
 
   // STEP DISTANCES
 
-  float sprintStepDistance = 0.4f;
-  float walkStepDistance = 0.6f;
-  float crouchStepDistance = 0.7f;
-  float lyingStepDistance = 0.8f;
+  float sprintStepDistance = 0.3f;
+  float walkStepDistance = 0.5f;
+  float crouchStepDistance = 0.6f;
+  float lyingStepDistance = 0.7f;
 
   void Awake()
   {
