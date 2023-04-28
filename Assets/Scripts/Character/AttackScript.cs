@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// This class is present on the attack point game object
+// Attack point is present at the endge of our Axe's blade
+
 public class AttackScript : MonoBehaviour
 {
   public float damage = 2f;
