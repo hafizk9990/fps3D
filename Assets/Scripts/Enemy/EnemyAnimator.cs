@@ -11,11 +11,6 @@ public class EnemyAnimator : MonoBehaviour
     enemyAnimatorController = GetComponent<Animator>();
   }
 
-  void Update()
-  {
-    // Call them here conditionally .... 
-  }
-
   public void walk(bool value)
   {
     enemyAnimatorController.SetBool("Walk", value);
